@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+
+import Listado from '../listado';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -26,9 +27,6 @@ export default function FixedContainer() {
   const [myText, setMyText] = useState("")
 
   const classes = useStyles();
-
-  console.log('myText: ', myText)
-  console.log('listado: ', listado)
 
   const handleInputChange = (e) => {
     setMyText(e.target.value)
@@ -60,7 +58,7 @@ export default function FixedContainer() {
           onClick={handleButton}>
           Agregar
         </Button>
-        <Typography variant="h1" component="h2"> {listado} </Typography>
+        <Listado listado={listado} />
       </Container>
     </React.Fragment>
   );
