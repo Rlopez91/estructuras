@@ -34,9 +34,17 @@ export default function FixedContainer() {
 
   const handleButton = () => {
     let newList = listado.slice(0)
-    newList.push(myText)
-    setListado(newList)
-    setMyText("")
+    if(myText !== ""){
+      newList.push(myText)
+      if (newList.length > 6) {
+        alert("LISTA LLENA")
+      } else {
+        setListado(newList)
+        setMyText("")
+      }
+    }else{
+      alert("NO HAY TEXTO")
+    }
   }
 
   return (
