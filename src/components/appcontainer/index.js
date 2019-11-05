@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -12,6 +13,9 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
   },
   input: {
+    margin: theme.spacing(1),
+  },
+  button: {
     margin: theme.spacing(1),
   },
 }));
@@ -24,10 +28,19 @@ export default function FixedContainer() {
   const classes = useStyles();
 
   console.log('myText: ', myText)
+  console.log('listado: ', listado)
 
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     setMyText(e.target.value)
   }
+
+  const handleButton = () => {
+    let newList = listado.slice(0)
+    newList.push(myText)
+    setListado(newList)
+    setMyText("")
+  }
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -39,10 +52,15 @@ export default function FixedContainer() {
             'aria-label': 'description',
           }}
           value={myText}
-          onChange={handleChange}
+          onChange={handleInputChange}
         />
-        <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} />
-        <Typography variant="h1" component="h2">   h1. Heading </Typography>
+        <Button variant="contained"
+          color="primary"
+          className={classes.button}
+          onClick={handleButton}>
+          Agregar
+        </Button>
+        <Typography variant="h1" component="h2"> {listado} </Typography>
       </Container>
     </React.Fragment>
   );
